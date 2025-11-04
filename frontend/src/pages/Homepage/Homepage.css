@@ -1,0 +1,18 @@
+.load-text{
+  color: hsl(0,0%,58%);
+  font-style: italic;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 50%;
+}
+
+.create{
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  color: #007bff;
+  cursor: pointer;
+  text-align: right;
+  transition: color 0.2s ease;
+  margin-top: 8px;
+}

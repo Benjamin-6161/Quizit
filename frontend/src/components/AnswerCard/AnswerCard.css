@@ -1,0 +1,158 @@
+.answer-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  max-width: 600px;
+  width: 100%;
+  margin: 10px auto;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.user-details {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}
+
+.answer-date {
+  position: absolute;
+  top: 18px;
+  left: 212px;
+  font-size: 0.9rem;
+  color: #777;
+  margin: 0;
+}
+
+.answer-image {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e0e0e0;
+}
+
+.answer-username {
+  font-weight: 600;
+  color: #222;
+  font-size: 1rem;
+  margin: 0;
+  line-height: 1;
+}
+
+.answer-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-image: url("/red.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 16px;
+  margin-top: 50px;
+}
+
+.answer-text {
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.edit-answer-popup{
+  font-family: tahoma;
+  text-shadow: none;
+}
+
+.edit-answer-popup input{
+  border: none;
+}
+
+/* --- Dropdown Styles --- */
+.menu-wrapper {
+  position: absolute;
+  top: 12px;
+  right: 4px;
+}
+
+.menu-dots {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 4px;
+  transition: transform 0.2s ease;
+}
+
+.menu-dots:hover {
+  transform: rotate(90deg);
+}
+
+.menu-dots span {
+  width: 3px;
+  height: 3px;
+  background-color: #333;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.menu-dots:hover span {
+  background-color: #007bff;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 25px;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  animation: fadeIn 0.2s ease;
+  z-index: 100;
+}
+
+.dropdown-menu p {
+  margin: 0;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.dropdown-menu p:hover {
+  background: #f0f0f0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

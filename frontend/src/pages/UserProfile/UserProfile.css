@@ -1,0 +1,30 @@
+h2{
+  font-size: 2rem;
+  background-color:;
+  color: black;
+  padding: 5px;
+  border-radius: 5px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.user-questions{
+  text-align: center;
+  margin-top: 100px;
+}
+
+.no-questions{
+  margin-top: 50px;
+  color: #858585;
+  font-style: italic;
+}
+
+.create{
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  color: #007bff;
+  cursor: pointer;
+  text-align: right;
+  transition: color 0.2s ease;
+  margin-top: 8px;
+}

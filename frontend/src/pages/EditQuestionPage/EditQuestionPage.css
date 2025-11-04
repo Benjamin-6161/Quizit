@@ -1,0 +1,83 @@
+.edit-container {
+  width: 90%;
+  max-width: 600px;
+  margin: 60px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+}
+
+/* Title input styling */
+.edit-title-input {
+  padding: 12px 14px;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.edit-title-input:focus {
+  border-color: #e41e26;
+}
+
+/* Question textarea */
+.edit-question-input {
+  padding: 12px 14px;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: Tahoma;
+  resize: vertical;
+  min-height: 120px;
+  outline: none;
+  line-height: 1.5;
+  transition: border-color 0.2s ease;
+}
+
+.edit-question-input:focus {
+  border-color: #e41e26;
+}
+
+/* Ask button */
+.edit-button {
+  background-color: #e41e26;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+.edit-button:hover {
+  background-color: #cd171e;
+  transform: translateY(-2px);
+}
+
+.edit-button:active {
+  transform: translateY(0);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 500px) {
+  .edit-container {
+    width: 95%;
+    padding: 16px;
+  }
+
+  .edit-title-input,
+  .edit-question-input {
+    font-size: 0.95rem;
+  }
+
+  .edit-button {
+    font-size: 0.95rem;
+  }
+}

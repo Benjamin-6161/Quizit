@@ -1,0 +1,11 @@
+.register-form{
+  padding: 0.3em;
+  padding-top: 3em;
+  border-radius: 5px;
+  background-color: hsl(0,0.9%,91.9%);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.h1-text{
+  font-family: Tahoma;
+}

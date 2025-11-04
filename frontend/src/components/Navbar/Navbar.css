@@ -1,0 +1,85 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #e41e26;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+/* Header text */
+.navbar-header {
+  font-size: 2em;
+  font-weight: 600;
+  font-family: Tahoma;
+}
+
+/* Menu wrapper */
+.menu {
+  position: relative;
+  padding-right: 28px; /* adds space between edge and icon */
+}
+
+/* Hamburger icon */
+.menu-icon {
+  width: 25px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 18px;
+}
+
+.menu-icon span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 2px;
+}
+
+/* Dropdown menu */
+.dropdown {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: #333;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  margin-right: 28px;
+  border-radius: 8px;
+  width: 120px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  
+  /* Hidden by default */
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+
+/* Show dropdown (animated) */
+.dropdown.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dropdown li {
+  padding: 10px 15px;
+  cursor: pointer;
+  color: white;
+  transition: background 0.3s;
+}
+
+.dropdown li:hover {
+  background-color: #444;
+}

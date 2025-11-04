@@ -46,7 +46,7 @@ public class Question{
 	private String title;
 	
 	@Lob
-	@Column(columnDefinition = "LONGTEXT")
+	@Column(columnDefinition = "TEXT")
 	private String question;
 	
 	@CreatedDate

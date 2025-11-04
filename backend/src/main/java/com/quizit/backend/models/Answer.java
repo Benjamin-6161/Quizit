@@ -28,7 +28,6 @@ public class Answer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Lob
 	@Column(columnDefinition = "TEXT")
 	private String answer;
 	

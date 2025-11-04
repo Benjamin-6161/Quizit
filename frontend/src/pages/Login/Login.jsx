@@ -52,7 +52,7 @@ function Login(){
       localStorage.setItem("userId", userId)
       
       //redirect to homepage
-      navigate('/');
+      
     }
     catch(err){
       if (err.response){

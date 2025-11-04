@@ -37,10 +37,9 @@ function Login(){
       const username = response.data.username;
       const email = response.data.email;
       const userId = response.data.id;
-      alert(token);
       if (!token){
+        toast.error("Login failed");
         console.log("Login failed, token not received");
-        alert("Login failed, token not received");
         return;
       }
       toast.success("Logged in");
@@ -52,6 +51,7 @@ function Login(){
       localStorage.setItem("userId", userId)
       
       //redirect to homepage
+      navigate("/")
       
     }
     catch(err){

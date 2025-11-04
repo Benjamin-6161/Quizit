@@ -1,25 +1,25 @@
-# Use a lightweight Java image
 FROM eclipse-temurin:17-jdk-alpine
 
-# Set working directory inside container
 WORKDIR /app
 
-# Copy the Maven wrapper and pom.xml
+# Copy Maven wrapper and config
 COPY mvnw .
 COPY .mvn .mvn
 COPY pom.xml .
 
-# Download dependencies (for caching)
+# Give execute permission to mvnw (fixes your error)
+RUN chmod +x mvnw
+
+# Pre-fetch dependencies (optional but speeds up build)
 RUN ./mvnw dependency:go-offline
 
-# Copy source code
+# Copy the source code
 COPY src src
 
-# Package the app
+# Build the app
 RUN ./mvnw clean package -DskipTests
 
-# Expose port 8080
 EXPOSE 8080
 
-# Run the jar file (Render provides PORT env var automatically)
+# Render provides the PORT env variable automatically
 CMD ["sh", "-c", "java -jar target/*.jar --server.port=$PORT"]

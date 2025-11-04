@@ -29,7 +29,7 @@ public class Answer {
 	private Long id;
 	
 	@Lob
-	@Column(columnDefinition = "LONGTEXT")
+	@Column(columnDefinition = "TEXT")
 	private String answer;
 	
 	@ManyToOne

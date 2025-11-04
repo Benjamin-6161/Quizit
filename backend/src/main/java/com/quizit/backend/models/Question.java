@@ -45,7 +45,6 @@ public class Question{
 	@Column(length = 500)
 	private String title;
 	
-	@Lob
 	@Column(columnDefinition = "TEXT")
 	private String question;
 	

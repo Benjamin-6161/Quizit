@@ -1,4 +1,3 @@
-//TODO: Replace frontend origin with domain (for prod)
 
 package com.quizit.backend.security;
 
@@ -43,7 +42,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173")); //frontend origin(Replace with frobtend domain for prod)
+        configuration.setAllowedOrigins(List.of("https://quizit-frontend.onrender.com")); //frontend origin(Replace with frobtend domain for prod)
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         configuration.setAllowCredentials(true);

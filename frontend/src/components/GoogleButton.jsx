@@ -11,7 +11,7 @@ function GoogleButton() {
   if (!window.google) return; 
 
   window.google.accounts.id.initialize({
-    client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+    client_id: "449859825157-0mga5s5sunvhfrv8hnelpg1iieunhpaf.apps.googleusercontent.com",
     callback: handleGoogleCallback,
   });
 

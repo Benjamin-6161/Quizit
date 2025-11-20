@@ -64,8 +64,6 @@ function Login(){
       if (err.response){
         toast.error(err.response.data.message || "Login failed");
 
-alert(err);
-alert(err?.response?.data?.message); 
         console.error(err.response.data.message || err.response.statusText);
       }
       else{

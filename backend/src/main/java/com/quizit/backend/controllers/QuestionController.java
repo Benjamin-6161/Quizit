@@ -76,7 +76,7 @@ public class QuestionController {
 
 	}
 
-	//Get All Questions
+	//GET ALL QUESTIONS
 	@GetMapping("/questions")
 public ResponseEntity<List<QuestionResponseDTO>> getAllQuestions() {
     List<QuestionResponseDTO> questions = service.getAllQuestions()
@@ -87,7 +87,7 @@ public ResponseEntity<List<QuestionResponseDTO>> getAllQuestions() {
     return ResponseEntity.ok(questions);
 }
 
-    //Get a question by id
+    //GET A QUESTION BY ID
     @GetMapping("/questions/{questionId}")
     public ResponseEntity<Map<String, Object>> getQuestionById(@PathVariable("questionId") Long questionId){
     	
@@ -121,7 +121,7 @@ public ResponseEntity<List<QuestionResponseDTO>> getAllQuestions() {
         return questions;
 	}
 
-	//Edit a question
+	//EDIT A QUESTION
 	@PutMapping("/editQuestion/{questionId}")
 	public ResponseEntity<Map<String, String>> editQuestion(@PathVariable("questionId") Long questionId, @NonNull @RequestBody Question updatedQuestion) {
 
@@ -166,7 +166,7 @@ public ResponseEntity<List<QuestionResponseDTO>> getAllQuestions() {
 
 	}
 
-	//Delete a question
+	//DELETE A QUESTION
 	@DeleteMapping("/deleteQuestion/{questionId}")
 	public ResponseEntity<Map<String, String>> deleteQuestion(@PathVariable("questionId") Long questionId) {
 
@@ -196,6 +196,118 @@ public ResponseEntity<List<QuestionResponseDTO>> getAllQuestions() {
 		response.put("status", "success");
 		response.put("message", "Question deleted successfully");
 
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+	
+	//FAVORITE A QUESTION
+	@PutMapping("/question/{questionId}/{userId}/favorite")
+	public ResponseEntity<Map<String, String>> favoriteAQuestion(@PathVariable("questionId") Long questionId, @PathVariable("userId") Long userId){
+		
+		//init response hashmap
+		Map<String, String> response = new HashMap<>();
+		
+		//get current user
+		Optional<User> currentUserOpt = userRepo.findById(userId);
+		
+		if (!currentUserOpt.isPresent()){
+			response.put("status", "failure");
+			response.put("message", "User not found");
+			
+			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+		}
+		
+		User currentUser = currentUserOpt.get();
+		
+		//get question
+		Optional<Question> questionOpt = service.findQuestionById(questionId);
+		
+		if (!questionOpt.isPresent()){
+			response.put("status", "failure");
+			response.put("message", "Question not found");
+			
+			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+		}
+		
+		Question question = questionOpt.get();
+		
+		//get user favorites
+		List<Question> userFavorites = currentUser.getFavoriteQuestions();
+		
+		//check that question isnt already in favorites
+		boolean alreadyFavorited = userFavorites.stream().anyMatch(q -> q.getId().equals(questionId));
+		
+		if (alreadyFavorited){
+			response.put("status", "failure");
+			response.put("message", "Question already in favorites");
+			
+			return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+		}
+		
+		//add question to user favorites
+		userFavorites.add(question);
+		
+		currentUser.setFavoriteQuestions(userFavorites);
+		
+		userRepo.save(currentUser);
+		
+		response.put("status", "success");
+		response.put("message", "Added to favorites");
+			
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+	
+	//REMOVE A QUESTION FROM FAVORITES
+	@PutMapping("/question/{questionId}/{userId}/favorite/remove")
+	public ResponseEntity<Map<String, String>> removeQuestionFromFavorites(@PathVariable("questionId") Long questionId, @PathVariable("userId") Long userId){
+		
+		//init response hashmap
+		Map <String, String> response = new HashMap<>();
+		
+		 //check that question exists 
+		 Optional<Question> questionOpt = service.findQuestionById(questionId);
+		
+		if (!questionOpt.isPresent()){
+			response.put("status", "failure");
+			response.put("message", "Question not found");
+			
+			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+		}
+		
+		//get current user
+		Optional<User> currentUserOpt = userRepo.findById(userId);
+		
+		if (!currentUserOpt.isPresent()){
+			response.put("status", "failure");
+			response.put("message", "User not found");
+			
+			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+		}
+		
+		User currentUser = currentUserOpt.get();
+		
+		//get user favorites
+		List<Question> userFavorites = currentUser.getFavoriteQuestions();
+		
+		//check that question is in favorites
+		boolean alreadyFavorited = userFavorites.stream().anyMatch(q -> q.getId().equals(questionId));
+		
+		if (!alreadyFavorited){
+			response.put("status", "failure");
+			response.put("message", "Question is not in favorites");
+			
+			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+		}
+		
+		//remove the question from favorites
+		userFavorites.removeIf(q -> q.getId().equals(questionId));
+		
+		currentUser.setFavoriteQuestions(userFavorites);
+		
+		userRepo.save(currentUser);
+		
+		response.put("status", "success");
+		response.put("message", "Removed from favorites");
+			
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 }

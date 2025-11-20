@@ -24,3 +24,10 @@ export const deleteAQuestion = async (questionId) => {
   return await api.delete(`/deleteQuestion/${questionId}`)
 }
 
+export const favoriteAQuestion = async (questionId, userId) => {
+  return await api.put(`/question/${questionId}/${userId}/favorite`)
+}
+
+export const removeAFavoriteQuestion = async (questionId, userId) => {
+  return await api.put(`/question/${questionId}/${userId}/favorite/remove`)
+}

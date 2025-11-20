@@ -54,12 +54,13 @@
 /* DATE */
 .question-detail-date {
   position: absolute;
-  top: 25px;
+  top: 30px;
   left: 260px;
   font-size: 0.9rem;
   color: #777;
   margin: 0;
 }
+
 
 /* TITLE */
 .question-detail-title {
@@ -91,6 +92,51 @@
   text-align: center;
   line-height: 1.4;
   word-break: break-word;
+}
+
+/* QUESTION DETAIL OPTION BUTTONS (FAVORITES) */
+.question-detail-option-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.question-detail-option-buttons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  gap: 6px;
+}
+
+.question-detail-option-buttons button.favorite {
+  background-color: #ffe6e6; /* light red/pink */
+  color: #e30303;
+}
+
+.question-detail-option-buttons button.favorite:hover {
+  background-color: #ffcccc;
+  transform: scale(1.05);
+}
+
+.question-detail-option-buttons button.remove-favorite {
+  background-color: #f0f0f0; /* light grey */
+  color: #555;
+}
+
+.question-detail-option-buttons button.remove-favorite:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
+}
+
+.question-detail-option-buttons button svg {
+  pointer-events: none; /* ensures clicking the icon triggers button click */
 }
 
 .question-detail-edit{

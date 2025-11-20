@@ -1,13 +1,9 @@
-import AnswerCard from "../components/AnswerCard/AnswerCard.jsx";
+import VerifyOtpPage from "./VerifyOtpPage/VerifyOtpPage.jsx";
 
 function ComponentTest(){
   return (
     <div>
-      <AnswerCard
-      username = "Benjamin"
-      date = "19/09/2025"
-      answer = "yeah baby"
-      />
+      <VerifyOtpPage/>
     </div>
     )
 }

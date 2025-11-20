@@ -12,4 +12,10 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   font-family: Tahoma;
 }
+
+.form-button:disabled {
+  background: #adb5bd;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
 /* FORM BUTTON */

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://quizit-backend-x84v.onrender.com/api/v1",
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 api.interceptors.request.use((config) => {
@@ -17,6 +17,7 @@ api.interceptors.response.use(
     if (error.response && (error.response.status === 401 || error.response.status === 403)) {
       // Remove invalid token
       localStorage.removeItem("token");
+      localStorage.setItem("authenticated", false);
 
       // Redirect to login page
       window.location.href = "/login";

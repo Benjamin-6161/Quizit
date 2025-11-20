@@ -2,10 +2,10 @@ package com.quizit.backend.models;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -13,13 +13,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.Lob;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -41,6 +41,9 @@ public class Question{
 	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference(value = "question-answer")
 	private List<Answer> answers;
+	
+	@ManyToMany(mappedBy = "favoriteQuestions")
+    private List<User> favoritedByUsers = new ArrayList<>();
 	
 	@Column(length = 500)
 	private String title;
@@ -112,4 +115,5 @@ public class Question{
 	public void setUpdatedAt(LocalDateTime updatedAt){
 		this.updatedAt = updatedAt;
 	}
+	
 }

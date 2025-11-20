@@ -1,5 +1,3 @@
-//TODO: Remove secrey key string before pushing tp github
-
 package com.quizit.backend.security;
 
 import io.jsonwebtoken.Claims;

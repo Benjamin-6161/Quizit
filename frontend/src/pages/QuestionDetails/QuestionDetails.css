@@ -5,6 +5,16 @@
 .no-answers {
   color: #858585;
   font-style: italic;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.answers-heading{
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  color: #222;
+  font-weight: 700;
 }
 
 .add-answer {

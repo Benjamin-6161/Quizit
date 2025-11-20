@@ -33,7 +33,7 @@ function CreateQuestion() {
     try {
       const response = await createAQuestion(formData);
       toast.success(response.data.message || "Question created successfully!");
-      navigate("/");
+      window.location.href = "/";
     } catch (err) {
       console.error(err);
       toast.error(

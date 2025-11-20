@@ -7,7 +7,6 @@ import {useNavigate} from 'react-router-dom';
 function Homepage(){
   
   const navigate = useNavigate();
-  
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
   

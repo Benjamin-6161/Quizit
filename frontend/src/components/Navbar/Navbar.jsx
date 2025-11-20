@@ -4,6 +4,7 @@ import "./Navbar.css";
 import {useNavigate} from "react-router-dom";
 import PrivateRoute from '../PrivateRoute.jsx';
 
+
 function Navbar() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
@@ -22,15 +23,6 @@ function Navbar() {
     };
   }, []);
   
-  const handleLogout = async () => {
-    await localStorage.removeItem("token");
-    await localStorage.removeItem("username");
-    await localStorage.removeItem("email");
-    await localStorage.removeItem("userId");
-    await toast.success("Logged out successfully");
-    navigate("/login");
-  }
-  
   const handleToProfile = () => {
     setOpen(false);
     navigate("/user-profile");
@@ -39,6 +31,11 @@ function Navbar() {
   const handleToHomepage = () => {
     setOpen(false);
     navigate("/");
+  }
+  
+  const handleToSettings = () => {
+    setOpen(false);
+    navigate("/settings");
   }
 
   return (
@@ -56,7 +53,7 @@ function Navbar() {
         <ul className={`dropdown ${open ? "show" : ""}`}>
           <li onClick = {handleToHomepage}>Homepage</li>
           <li onClick = {handleToProfile}>Profile</li>
-          <li onClick = {handleLogout}>Logout</li>
+          <li onClick = {handleToSettings}>Settings</li>
         </ul>
       </div>
       </PrivateRoute>

@@ -1,0 +1,50 @@
+.settings-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-option {
+  background: #ffffff;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: 1px solid transparent;
+}
+
+.settings-option:hover {
+  background: #f7f7f7;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.settings-option:active {
+  transform: scale(0.98);
+}
+
+.settings-option.delete {
+  color: #e30303;
+}
+
+.settings-option.delete:hover {
+  background: #ffe5e5;
+  border-color: #ffb3b3;
+}
+
+@media (max-width: 480px) {
+  .settings-container {
+    padding: 1rem;
+  }
+
+  .settings-option {
+    font-size: 0.95rem;
+    padding: 0.9rem 1rem;
+  }
+}

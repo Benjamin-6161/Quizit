@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.quizit.backend.models.Answer;
 import com.quizit.backend.models.Question;
 
 public class QuestionResponseDTO {

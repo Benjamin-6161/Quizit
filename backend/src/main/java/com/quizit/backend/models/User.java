@@ -1,6 +1,7 @@
 package com.quizit.backend.models;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -17,6 +18,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.Table;
 
 @Entity
@@ -38,6 +42,10 @@ public class User {
 	
 	private String password;
 	
+	private String accountType;
+	
+	private String googleId;
+	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference(value = "user-question")
 	private List<Question> questions;
@@ -45,6 +53,14 @@ public class User {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference(value = "user-answer")
 	private List<Answer> answers;
+	
+	@ManyToMany
+    @JoinTable(
+    name = "user_favorites",
+    joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "question_id")
+)
+    private List<Question> favoriteQuestions = new ArrayList<>();
 	
 	@CreatedDate
 	@Column(nullable = false, updatable = false)
@@ -81,11 +97,22 @@ public class User {
 	public String getEmail(){
 		return email;
 	}
+	
+	public String getGoogleId(){
+		return googleId;
+	}
+	
+	public String getAccountType(){
+		return accountType;
+	}
 		
 	public String getPassword(){
 		return password;
 	}
 	
+	public List<Question> getFavoriteQuestions(){
+		return favoriteQuestions;
+	}
 	public LocalDateTime getCreatedAt(){
 		return createdAt;
 	}
@@ -123,8 +150,20 @@ public class User {
 		this.password = password;
 	}
 	
+	public void setAccountType(String accountType){
+		this.accountType = accountType;
+	}
+	
 	public void setEmail(String email){
 		this.email = email;
+	}
+	
+	public void setGoogleId(String googleId){
+		this.googleId = googleId;
+	}
+	
+	public void setFavoriteQuestions(List<Question> favoriteQuestions){
+		this.favoriteQuestions = favoriteQuestions;
 	}
 	
 	public void setCreatedAt(LocalDateTime createdAt){

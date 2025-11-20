@@ -17,24 +17,42 @@ public class UserService implements UserDetailsService{
 	
 	@Autowired
 	UserRepository repo;
+	
+	//getUserById
+	public Optional<User> getUserById(Long userId){
+		return repo.findById(userId);
+	}
 
 	//get user by email
 	public Optional<User> getUserByEmail(String email) {
 		return repo.findOneByEmail(email);
 	}
+	
+	//get user by username
+	public Optional<User> getUserByUsername(String username){
+		return repo.findOneByUsername(username);
+	}
 
 	//register user
 	public void registerUser(User user) {
 		repo.save(user);
+		repo.flush();//flush ensures immediate persistence after calling register function so the registered user is immediately available to all other threads
+	}
+	
+	//delete user
+	public void deleteUser(Long userId){
+		repo.deleteById(userId);
 	}
 	
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = repo.findOneByEmail(email).get();
-        if (user == null) {
+        Optional<User> userOpt = repo.findOneByEmail(email);
+        if (userOpt.isPresent()) {
+            User user = userOpt.get();
+            return new CustomUserDetails(user);
+        } else {
             throw new UsernameNotFoundException("User not found with email: " + email);
-        }
-        return new CustomUserDetails(user);
-    }
+      }
+}
 
 }

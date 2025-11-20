@@ -29,7 +29,7 @@ public class SecurityConfig {
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/v1/login", "/api/v1/register").permitAll()
+                .requestMatchers("/api/v1/login", "/api/v1/register", "/api/v1/otp/request", "/api/v1/otp/verify", "/api/v1/password/reset", "/api/v1/auth/google").permitAll()
                 .anyRequest().authenticated()
             )
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -41,7 +41,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("https://quizit-frontend.onrender.com")); //frontend origin(Replace with frobtend domain for prod)
+        configuration.setAllowedOrigins(List.of("https://quizit-frontend.onrender.com", "http://localhost:5173")); 
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept"));
         configuration.setAllowCredentials(true);

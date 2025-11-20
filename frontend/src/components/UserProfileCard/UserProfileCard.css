@@ -2,8 +2,72 @@
   background-color: #e0dede;
   border-radius: 8px;
   padding: 20px;
+  position: relative;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.profile-menu-wrapper {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.profile-menu-dots {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 18px;
+  height: 18px;
+}
+
+.profile-menu-dots span {
+  display: block;
+  width: 4px;
+  height: 4px;
+  background-color: #333;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.profile-menu-dots:hover span {
+  background-color: #666;
+}
+
+.profile-dropdown-menu {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  min-width: 70px;
+  padding: 10px 10px;
+  z-index: 10;
+  animation: fadeIn 0.2s ease;
+}
+
+.profile-dropdown-menu p {
+  margin: 0;
+  padding: 7px 0px;
+  font-size: 0.9rem;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.profile-dropdown-menu p:hover {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .user-avatar{
@@ -16,7 +80,7 @@
 
 .user-name{
   margin-top: 0;
-  font-size: 3rem;
+  font-size: 2.3rem;
 }
 
 .rank-image{

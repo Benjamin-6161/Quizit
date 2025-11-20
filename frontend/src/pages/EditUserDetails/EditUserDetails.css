@@ -1,0 +1,88 @@
+.edit-user-container {
+  max-width: 420px;
+  margin: 60px auto;
+  padding: 30px 25px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.4s ease;
+}
+
+.edit-user-container h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  color: #222;
+  font-weight: 700;
+}
+
+.edit-user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.edit-user-input-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.edit-user-input {
+  padding: 12px 14px;
+  border: 1.5px solid #dcdcdc;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: 0.25s ease;
+  outline: none;
+}
+
+.edit-user-input:focus {
+  border-color: #e41e26;
+  box-shadow: 0 0 6px rgba(246,63,63,0.25);
+}
+
+.edit-user-button {
+  margin-top: 10px;
+  padding: 12px;
+  font-size: 1.05rem;
+  background: #e41e26;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.edit-user-button:hover:not(:disabled) {
+  background: #e81820;
+  transform: translateY(-1px);
+}
+
+.edit-user-button:disabled {
+  background: #f79f9f;
+  cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .edit-user-container {
+    margin: 40px 20px;
+    padding: 25px 20px;
+  }
+
+  .edit-user-container h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

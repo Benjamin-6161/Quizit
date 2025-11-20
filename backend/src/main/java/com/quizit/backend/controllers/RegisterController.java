@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +40,13 @@ public class RegisterController {
 			return new ResponseEntity<> (response, HttpStatus.CONFLICT);		
 		}
 		
+		//Check that username has not been used
+		if  (service.getUserByUsername(user.getUsername()).isPresent()){
+			response.put("status", "failed");
+			response.put("message", "Username already exists");
+			return new ResponseEntity<> (response, HttpStatus.CONFLICT);
+		}
+		
 		//Encrypt password
 		String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
 		
@@ -50,6 +56,7 @@ public class RegisterController {
 	    newUser.setFirstName(user.getFirstName());
 	    newUser.setLastName(user.getLastName());
 	    newUser.setUsername(user.getUsername());
+	    newUser.setAccountType("EMAIL-PASSWORD");
 	    newUser.setEmail(user.getEmail());
 	    newUser.setPassword(hashedPassword); 
 	    

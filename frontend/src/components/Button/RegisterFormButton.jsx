@@ -7,7 +7,7 @@ function RegisterFormButton(props){
     className = "form-button"
     onClick = {props.onClick}
     disabled = {props.loading}
-    >{props.loading ? "Register" : "Verifying..."}</button>
+    >{props.loading ? "Verifying..." : "Register"}</button>
     );
 }
 
